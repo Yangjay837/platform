@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Obituary Form</title>
+	<style>
+		
+		body {
+			font-family: Arial, sans-serif;
+			background-color: rgb(224, 221, 238);
+		}
+		
+		form {
+			width: 50%;
+			margin: 40px auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		
+		input, textarea {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: 1px solid #ccc;
+		}
+		
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+        h1{text-align: center;}
+	</style>
+</head>
+<body>
+    
+    <h1>Obituary Platform</h1>
+	<form action="submit_obituary.php"  method="POST" id="obituary_Form"> 
+
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+		
+		<label for="date-of-birth">Date of Birth:</label>
+		<input type="date" id="date-of-birth" name="date-of-birth" required>
+		
+		<label for="date-of-death">Date of Death:</label>
+		<input type="date" id="date-of-death" name="date-of-death" required>
+		
+		<label for="content">Content:</label>
+		<textarea id="content" name="content" required></textarea>
+		
+		<label for="author">Author:</label>
+		<input type="text" id="author" name="author" required>
+		
+		<input type="submit" value="Submit Obituary">
+	</form>
+	
+	<script>
+		
+		const form = document.getElementById('obituary-form');
+		
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			
+			const name = document.getElementById('name').value;
+			const dateOfBirth = document.getElementById('date-of-birth').value;
+			const dateOfDeath = document.getElementById('date-of-death').value;
+			const content = document.getElementById('content').value;
+			const author = document.getElementById('author').value;
+			
+			if (name === '' || dateOfBirth === '' || dateOfDeath === '' || content === '' || author === '') {
+				alert('Please fill in all fields');
+				return;
+			}
+			
+			if (dateOfBirth > dateOfDeath) {
+				alert('Date of birth cannot be after date of death');
+				return;
+			}
+			
+			form.submit();
+		});
+	</script>
+</body>
+</html>
